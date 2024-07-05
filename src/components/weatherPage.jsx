@@ -147,7 +147,7 @@ function WeatherPage() {
         <MapContainer
           center={[geoLocation.lat, geoLocation.lon]}
           zoom={10}
-          style={{ height: '500px', width: '100%' }}
+          style={{ height: '500px', width: '100%', marginTop: '20px'}}
           key={geoLocation.lat + geoLocation.lon} 
         >
           <TileLayer
