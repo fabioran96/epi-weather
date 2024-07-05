@@ -120,10 +120,10 @@ function WeatherPage() {
 
   return (
     <div className="weather-page">
-        <div>
+        <div className='top-bar'>
         <Button variant="primary" onClick={() => navigate('/')}>Home</Button>
-        <Form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center' }}>
-          <InputGroup>
+        <Form onSubmit={handleSearch} className="search-form">
+          <InputGroup className="input-group">
             <Form.Control
               type="text"
               value={searchCity}
