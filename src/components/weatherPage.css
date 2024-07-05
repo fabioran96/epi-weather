@@ -1,0 +1,32 @@
+.weather-page {
+    background-color: #62365c;
+    color: #fff;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  
+  .weather-title {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .weather-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .weather-info .icon {
+    margin-bottom: 1rem;
+  }
+  
+  .forecast-info {
+    margin-bottom: 2rem;
+  }
+  
+  .weather-map {
+    height: 500px;
+    width: 100%;
+  }
+  

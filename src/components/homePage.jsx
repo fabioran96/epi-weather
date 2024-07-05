@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, Button, InputGroup, Card, ListGroup } from 'react-bootstrap';
+import { Form, Button, InputGroup, ListGroup } from 'react-bootstrap';
 import { WiDaySunny, WiCloud, WiRain, WiSnow, WiFog } from 'react-icons/wi';
 import './homePage.css'; 
 

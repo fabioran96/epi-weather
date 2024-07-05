@@ -1,32 +1,88 @@
 import React from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
+import { WiDaySunny, WiCloud, WiRain, WiSnow, WiFog } from 'react-icons/wi';
+import './forecast.css';
 
-function Forecast({ forecast }) {
-  // Filtra per ottenere un intervallo di 24 ore per i prossimi 5 giorni
-  const filteredForecast = forecast.list.filter((_, index) => index % 8 === 0);
+const getWeatherIcon = (condition) => {
+  switch (condition) {
+    case 'Clear':
+      return <WiDaySunny size={50} />;
+    case 'Clouds':
+      return <WiCloud size={50} />;
+    case 'Rain':
+      return <WiRain size={50} />;
+    case 'Snow':
+      return <WiSnow size={50} />;
+    case 'Fog':
+    case 'Mist':
+      return <WiFog size={50} />;
+    default:
+      return <WiDaySunny size={50} />;
+  }
+};
+
+const groupByDay = (list) => {
+  const days = {};
+  list.forEach((item) => {
+    const date = new Date(item.dt * 1000);
+    const day = date.toLocaleDateString('en-GB', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    });
+    if (!days[day]) {
+      days[day] = [];
+    }
+    days[day].push(item);
+  });
+  return days;
+};
+
+const calculateDailyHighLow = (dayData) => {
+    const temps = dayData.map(item => item.main.temp);
+    const tempMax = Math.max(...temps);
+    const tempMin = Math.min(...temps);
+    const condition = dayData[0].weather[0].main;
+    return {
+      date: new Date(dayData[0].dt * 1000).toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      }),
+      tempMax: Math.round(tempMax),
+      tempMin: Math.round(tempMin),
+      condition,
+      description: dayData[0].weather[0].description,
+    };
+  };
+  
+
+const Forecast = ({ forecast, colors }) => {
+  if (!forecast || !forecast.list || forecast.list.length === 0) {
+    return <div>No forecast data available.</div>;
+  }
+
+  const days = groupByDay(forecast.list);
+  const dailyForecasts = Object.values(days).map(calculateDailyHighLow);
 
   return (
-    <div>
-      <h2>5 Day Forecast</h2>
-      <Row>
-        {filteredForecast.map((item) => (
-          <Col key={item.dt} className="mb-4">
-            <Card>
-              <Card.Body>
-                <Card.Title>{new Date(item.dt * 1000).toLocaleDateString()}</Card.Title>
-                <Card.Text>
-                  Temperature: {item.main.temp}°C
-                </Card.Text>
-                <Card.Text>
-                  Conditions: {item.weather[0].description}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+    <div className="forecast">
+      {dailyForecasts.slice(0, 5).map((day, index) => (
+        <div
+          key={index}
+          className="forecast-day"
+          style={{ backgroundColor: colors[index % colors.length] }}
+        >
+          <div className="forecast-date">{day.date}</div>
+          <div className="forecast-icon">{getWeatherIcon(day.condition)}</div>
+          <div className="forecast-temp">
+            <span className="temp-max">Max: {day.tempMax}°C</span>
+            <span className="temp-min">Min: {day.tempMin}°C</span>
+          </div>
+          <div className="forecast-desc">{day.description}</div>
+        </div>
+      ))}
     </div>
   );
-}
+};
 
 export default Forecast;

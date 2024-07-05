@@ -1,0 +1,35 @@
+.forecast {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .forecast-day {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 5px;
+    color: #fff;
+  }
+  
+  .forecast-date, .forecast-temp, .forecast-desc {
+    margin: 0;
+  }
+  
+  .forecast-temp {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .temp-max, .temp-min {
+    margin: 0;
+  }
+  
+  .forecast-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+  }
+  

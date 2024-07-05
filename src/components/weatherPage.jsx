@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate} from 'react-router-dom';
 import { Button, Form, InputGroup } from 'react-bootstrap';
+import { WiDaySunny, WiCloud, WiRain, WiSnow, WiFog } from 'react-icons/wi';
 import WeatherInfo from './weatherInfo';
 import Forecast from './forecast';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import './weatherPage.css';
 
 function WeatherPage() {
 
   const navigate = useNavigate();
   const [searchCity, setSearchCity] = useState('');
-
   const { city } = useParams();
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [geoLocation, setGeoLocation] = useState(null);
   const [error, setError] = useState(null);
   const API_KEY = 'de024db4722b5c3363519ef87079fc31';
+
+  const colors = ['#753b4f', '#9fa197', '#8ca79b', '#c3bb8f', '#46bfa6'];
+
 
   useEffect(() => {
     const getGeolocation = async () => {
@@ -87,6 +91,25 @@ function WeatherPage() {
     return null;
   }
 
+  const getWeatherIcon = (condition) => {
+    switch (condition) {
+      case 'Clear':
+        return <WiDaySunny size={100} />;
+      case 'Clouds':
+        return <WiCloud size={100} />;
+      case 'Rain':
+        return <WiRain size={100} />;
+      case 'Snow':
+        return <WiSnow size={100} />;
+      case 'Fog':
+      case 'Mist':
+        return <WiFog size={100} />;
+      default:
+        return <WiDaySunny size={100} />;
+    }
+  };
+
+
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchCity) {
@@ -96,7 +119,7 @@ function WeatherPage() {
 
 
   return (
-    <div>
+    <div className="weather-page">
         <div>
         <Button variant="primary" onClick={() => navigate('/')}>Home</Button>
         <Form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center' }}>
@@ -111,10 +134,15 @@ function WeatherPage() {
           </InputGroup>
         </Form>
         </div>
-      <h1>Weather in {city}</h1>
+      <h1 className="weather-title">Weather in {city}</h1>
       {error && <p>Error: {error}</p>}
-      {weather && <WeatherInfo weather={weather} />}
-      {forecast && <Forecast forecast={forecast} />}
+      {weather && (
+       <div className="weather-info">
+       {getWeatherIcon(weather.weather[0].main)}
+       <WeatherInfo weather={weather}  />
+       </div>
+      )}
+      {forecast && <Forecast forecast={forecast} colors={colors}  className="forecast-info"  />}
       {geoLocation && (
         <MapContainer
           center={[geoLocation.lat, geoLocation.lon]}
