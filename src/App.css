@@ -35,4 +35,8 @@
   to {
     transform: rotate(360deg);
   }
+
 }
+
+@import url('https://unpkg.com/leaflet@1.7.1/dist/leaflet.css');
+
