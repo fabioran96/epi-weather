@@ -71,17 +71,30 @@
   
   .favorite-item-content {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .text-content {
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
   
-  .weather-info {
+  .icon-content {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    width: 50px;
   }
   
-  .weather-info p {
+  .weather-info .temperature {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .weather-info .description {
     margin: 0;
     font-size: 0.9rem;
   }

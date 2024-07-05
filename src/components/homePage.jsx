@@ -53,21 +53,20 @@ function HomePage() {
   const getWeatherIcon = (condition) => {
     switch (condition) {
       case 'Clear':
-        return <WiDaySunny />;
+        return <WiDaySunny size={50} />;
       case 'Clouds':
-        return <WiCloud />;
+        return <WiCloud size={50} />;
       case 'Rain':
-        return <WiRain />;
+        return <WiRain size={50} />;
       case 'Snow':
-        return <WiSnow />;
+        return <WiSnow size={50} />;
       case 'Fog':
       case 'Mist':
-        return <WiFog />;
+        return <WiFog size={50} />;
       default:
-        return <WiDaySunny />;
+        return <WiDaySunny size={50} />;
     }
   };
-
 
   return (
     <div className="homepage">
@@ -102,21 +101,24 @@ function HomePage() {
             className="favorite-item"
           >
             <div className="favorite-item-content">
-              <h5>{fav}</h5>
-              {weatherData[fav] && (
-                <div className="weather-info">
-                  {getWeatherIcon(weatherData[fav].weather[0].main)}
-                  <p>{weatherData[fav].main.temp}°C</p>
-                  <p>{weatherData[fav].weather[0].description}</p>
-                </div>
-              )}
+              <div className="text-content">
+                <h5>{fav}</h5>
+                {weatherData[fav] && (
+                  <>
+                    <p className="temperature">{weatherData[fav].main.temp}°C</p>
+                    <p className="description">{weatherData[fav].weather[0].description}</p>
+                  </>
+                )}
+              </div>
+              <div className="icon-content">
+                {weatherData[fav] && getWeatherIcon(weatherData[fav].weather[0].main)}
+              </div>
             </div>
           </ListGroup.Item>
         ))}
       </ListGroup>
     </div>
   );
-
 
     
 }
