@@ -1,0 +1,93 @@
+.homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: linear-gradient(to bottom, #4b79a1, #283e51);
+    height: 100vh;
+    color: #fff;
+  }
+  
+  .homepage-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #fff;
+  }
+  
+  .search-form {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+  
+  .search-input {
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 5px 0 0 5px;
+  }
+  
+  .search-button {
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: #ff7e67;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  .add-favorite-button {
+    margin-left: 10px;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: #ffd700;
+  }
+  
+  .favorites-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .favorites-list {
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .favorite-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #5a6f7d;
+    color: #fff;
+    border: none;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+  }
+  
+  .favorite-item:hover {
+    background-color: #4a5f6d;
+  }
+  
+  .favorite-item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .weather-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .weather-info p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  
+  .favorite-item h5 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
