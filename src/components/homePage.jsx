@@ -11,6 +11,9 @@ function HomePage() {
   const navigate = useNavigate();
   const API_KEY = 'de024db4722b5c3363519ef87079fc31';
 
+  const colors = ['#753b4f', '#9fa197', '#8ca79b', '#c3bb8f', '#46bfa6'];
+
+
   useEffect(() => {
     const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(savedFavorites);
@@ -70,7 +73,7 @@ function HomePage() {
 
   return (
     <div className="homepage">
-      <h1 className="homepage-title">iOS Weather App</h1>
+      <h1 className="homepage-title">EpiWeather </h1>
       <Form onSubmit={handleSearch} className="search-form mb-4">
         <InputGroup>
           <Form.Control
@@ -99,6 +102,7 @@ function HomePage() {
             action
             onClick={() => navigate(`/weather/${fav}`)}
             className="favorite-item"
+            style={{ backgroundColor: colors[index % colors.length] }} 
           >
             <div className="favorite-item-content">
               <div className="text-content">
