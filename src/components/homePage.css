@@ -1,9 +1,16 @@
+
+.container{
+    margin: 0;
+    padding: 0;
+    width: 100%
+}
+
 .homepage {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
-    background: linear-gradient(to bottom, #002342, #283e51);
+    padding-top: 2rem;
+    background: #62365c;
     color: #fff;
     width: 100%;
   }
